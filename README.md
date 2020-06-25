@@ -6,7 +6,7 @@
 ![foodfy4](https://user-images.githubusercontent.com/65800961/85801465-4c46df80-b719-11ea-9be7-42b25a3a538e.png)</br>
 
 
-<h3>Para poder funcionar o Projeto Ecoleta depois de cloná-lo.</h3>
+<h3>Para poder funcionar o Foodfy depois de cloná-lo.</h3>
 
 Exceutar tais comendos no terminal:
 <ul>

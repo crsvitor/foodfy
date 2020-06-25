@@ -1,4 +1,4 @@
-<h1># NLW-Ecoleta</h1>
+<h1># Foodfy</h1>
 
 ![foodfy1](https://user-images.githubusercontent.com/65800961/85801410-333e2e80-b719-11ea-9661-1a03d78420d5.png)</br>
 ![foodfy2](https://user-images.githubusercontent.com/65800961/85801425-3afdd300-b719-11ea-95d9-f32acc445bff.png)</br>

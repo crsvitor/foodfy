@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+html {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 940px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    text-decoration: none;
+    margin: 30px 0 26px;
+    
+}
+
+header h1 a{
+    text-decoration: none;
+    color: black;
+    margin-right: 120px;
+    font-family: initial;
+}
+
+header nav a {
+    text-decoration: none;
+    color: black;
+    margin-left: 30px;
+    font-size: 16px;
+}
+
+.home-img {
+    display: flex;
+    width: 940px;
+    height: 366px;
+    background-color: #FBDFDB;
+    border-radius: 15px;
+    position: relative;
+    align-items: center;
+}
+
+.home-img .texts {
+    flex-direction: column;
+    margin: 117px 259px 117px 60px;
+    max-width: 316px;
+}
+
+.home-img .texts h1 {
+    margin-bottom: 0px;
+    font-size: 32px;
+}
+
+.home-img .texts p {
+    font-size: 18px;
+}
+
+.home-img .img {
+    margin-top: 66px;
+}
+
+.title-section h1 {
+    margin: 50px 0 20px;
+}
+
+.most-accessed {
+    width: 940px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.card {
+    cursor: pointer;
+}
+
+.card img {
+    width: 300px;
+    border-radius: 15px;
+}
+
+.card h3 {
+    font-size: 18px;
+    color: #111111;
+    margin: 20px 0 5px;
+}
+
+.card p {
+    margin: 0 0 30px;
+    font-size: 14px;
+    color: #777777;
+}
+
+
+.about2 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: auto;
+}
+
+.sobre {
+    margin-bottom: 30px;
+}
+
+.sobre h1 {
+    font-size: 24px;
+    color: #111111;
+    margin-bottom: 20px;
+}
+
+.comeco {
+    margin-bottom: 30px;
+}
+
+.comeco h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #111111;
+}
+
+.receitas{
+    margin-bottom: 50px;
+}
+
+.receitas h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #111111;
+}
+
+.recipes {
+    width: 940px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+
+
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left: 0; 
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal {
+    position: relative;
+    background-color: white;
+    width: 660px;
+    height: 413px;
+    margin: 25vh auto; /* centralizar a imagem */
+    border-radius: 16px;  
+}
+
+.modal-close {
+    text-align: center;
+    position: absolute;
+    bottom: 30px;
+    right: 281px;
+    cursor: pointer;
+}
+
+
+.modal-content img {
+    width: 600px;
+    height: 200px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    border-radius: 15px;
+}
+
+.modal-content .nome {
+    text-align: center;
+    padding-top: 250px;
+    padding-bottom: 0;
+    font-size: 24px;
+    color: #111111;
+    margin-bottom: 5;
+}
+
+.modal-content .autor {
+    margin-top: -25px;
+    font-size: 18px;
+    color: #777777;
+    text-align: center; 
+}
+
+.modal-close a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #999999;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.wrapper-recipe-page {
+    width: 940px;
+    font-family: 'Roboto-Regular', sans-serif;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.titles-recipe-page {
+    margin: 0 auto;
+}
+
+.wrapper-recipe-page img {
+    border-radius: 15px;
+}
+
+.wrapper-recipe-page h1 {
+    font-size: 36px;
+    color: #111111;
+    margin-top: 50px;
+    margin-bottom: 4px;
+}
+
+.wrapper-recipe-page p {
+    font-size: 20px;
+    color: #777777;
+    margin-top: 0;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.wrapper-recipe-page h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 24px;
+    color: #111111; 
+}
+
+.wrapper-recipe-page ul {
+    font-family: 'Roboto-Regular', sans-serif;
+    font-size: 18px;
+    color: #444444;
+    line-height: 28px;
+    margin-top: 0;
+    margin-bottom: 50px;
+}
+
+.infos {
+    display: flex;
+    align-items: center;
+}
+
+.infos p {
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 12px;
+    color: #999999;
+    text-decoration: none;
+    margin-bottom: 12px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.change-space#information{
+    margin-bottom: 50px;
+}
+
+.change-space.active{
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+}
+
+footer {
+    width: 100%;
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    background: #EEEEEE;
+    margin-top: 20px;
+}
+
+footer p {
+    text-align: center;
+    font-size: 14px;
+    color: #999999;
+    
+}

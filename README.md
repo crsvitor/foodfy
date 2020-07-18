@@ -1,7 +1,7 @@
 <h1># Foodfy</h1>
 <h3>Para poder funcionar o Foodfy depois de cloná-lo.</h3>
 
-Exceutar tais comendos no terminal:
+Exceutar tal comando no terminal:
 <ul>
 <li>npm install<li>
 </ul>  

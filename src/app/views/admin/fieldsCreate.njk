@@ -1,0 +1,31 @@
+<section class="form-fields">
+        <label for="">Nome da receita</label>
+        <input type="text" name="title" id="first" value="{{recipe.title}}" placeholder="Nome da receita">
+
+        <label for="">Autor</label>
+        <input type="text" name="author" id="first" value="{{recipe.author}}" placeholder="Nome do autor">
+
+        <label for="">Imagem da Receita</label>
+        <input type="text" name="image" id="first" value="{{recipe.image}}" placeholder="https://">
+    
+        <label for="">Ingredientes</label>
+        <div id="ingredients">
+                <div class="ingredient">
+                    <input type="text" name="ingredients[]" id="third" value="{{recipe.ingredients}}" placeholder="Ingredientes necessários">
+                </div>
+        </div>
+        <button type="button"  class="add-ingredient">Adicionar novo ingrediente</button>
+        
+        <label for="">Modo de preparo</label>
+        <div id="prepariation-method">
+                <div class="methods">
+                    <input type="text" name="preparation[]" id="third" value="{{recipe.preparation}}" placeholder="Etapas do processo">
+                </div>
+        </div>
+        <button type="button" class="add-preparation" id="last">Adicionar novo passo</button>
+
+        <label for="">Informações adicionais</label>
+        <textarea name="information" id="forth" value="{{recipe.information}}" placeholder="Descrição adicional"></textarea>
+
+</section>
+<script src="/scripts/addPaths.js"></script>

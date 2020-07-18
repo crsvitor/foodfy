@@ -1,0 +1,37 @@
+{% extends "layoutAdmin.njk" %}
+
+{% block content %}
+<form action="/admin/recipes/{{recipe.id}}/edit" method="get">
+    <div class="header-show">
+        <h3>Receita: {{recipe.title}}</h3>
+        <button type="submit">Editar receita</button>
+    </div>
+    <div class="food-content">
+        <div class="beggining">
+            <img src="{{recipe.image}}" alt="" class="photo-width">
+            <h1>{{recipe.title}}</h1>
+            <h3>por {{recipe.author}}</h3>
+        </div>
+        <div class="steps">
+            <h3>Ingredientes</h3>
+            <ul>
+                {% for ingridient in recipe.ingredients %}
+                    <li>{{ingridient}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="steps">
+            <h3>Modo de preparo</h3>
+            <ul>
+                {% for step in recipe.preparation %}
+                    <li>{{step}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="info">
+            <h3>Informações adicionais</h3>
+            <p>{{recipe.information}}</p>
+        </div>        
+    </div>
+</form>
+{% endblock content %}

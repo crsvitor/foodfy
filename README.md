@@ -7,6 +7,7 @@ Exceutar tais comendos no terminal:
 <li>npm install express</li>
 <li>npm instal -D nodemon</li>
 <li>npm install nunjucks</li>
+<li>npm install pg</li>
 </ul>  
 
 Executado os 4 procedimentos, é só entrar em <strong>localhost:500</strong>, através do seu navegador, para que a aplicação funcione perfeitamente.

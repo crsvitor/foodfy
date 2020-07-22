@@ -11,8 +11,14 @@
     <header>
         <h1><a href="/">Foodfy</a></h1>
         <nav>
-            <a href="/about">Sobre</a>
-            <a href="/recipes">Receitas</a>
+            <div class="noFilter">
+                <a href="/about">Sobre</a>
+                <a href="/recipes">Receitas</a>
+                <a href="/chefs">Chefs</a>
+            </div>
+            {% block filter %}
+
+            {% endblock filter %}
         </nav>
     </header>
     {% block content %}

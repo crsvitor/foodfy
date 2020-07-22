@@ -1,11 +1,17 @@
 const Admin = require('../models/Admin-db');
 
 module.exports = {
-    index(reeq, res) {
+    redirect(req, res) {
+        return res.redirect("/admin/recipes");
+    },
+    index(req, res) {
         return res.render("./admin/index");
     },
     create(req, res) {
         return res.render("./admin/create");
+    },
+    post(req, res) {
+        return res.redirect(`/admin/recipes/`);
     },
     show(req, res) {
         return res.render("./admin/show");
@@ -13,13 +19,33 @@ module.exports = {
     edit(req, res) {
         return res.render(`./admin/edit`);
     },
-    post(req, res) {
-        return res.redirect(`/admin/recipes/`);
-    },
     put(req, res) {
         return res.redirect(`/admin/recipes/${id}`);
     },
     delete(req, res) {
+        return res.redirect("/admin/recipes");
+    },
+
+
+    indexChefs(req, res) {
+        return res.render("./admin/chefs");
+    },
+    createChef(req, res) {
+        return res.render("./admin/create");
+    },
+    showChef(req, res) {
+        return res.render("./admin/show");
+    },
+    editChef(req, res) {
+        return res.render(`./admin/edit`);
+    },
+    postChef(req, res) {
+        return res.redirect(`/admin/recipes/`);
+    },
+    putChef(req, res) {
+        return res.redirect(`/admin/recipes/${id}`);
+    },
+    deleteChef(req, res) {
         return res.redirect("/admin/recipes");
     }
 }

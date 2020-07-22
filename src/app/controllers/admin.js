@@ -1,29 +1,67 @@
 const Admin = require('../models/Admin-db');
+const Recipe = require('../models/Recipe');
+const Chef = require('../models/Chef');
 
 module.exports = {
     redirect(req, res) {
         return res.redirect("/admin/recipes");
     },
     index(req, res) {
-        return res.render("./admin/index");
+        Recipe.all(function(recipes) {
+            return res.render("./admin/index", { recipes });
+        });
     },
     create(req, res) {
-        return res.render("./admin/create");
+        Recipe.chefSelectOptions(function(options) {
+           return res.render("./admin/create", { chefOptions: options }) 
+        });
     },
     post(req, res) {
-        return res.redirect(`/admin/recipes/`);
+        const keys = Object.keys(req.body);
+
+        for (key of keys) {
+            if (req.body[key] == "" && key != "information") {
+                return res.send("Please, fill all fields!");
+            }
+        }
+
+        Recipe.create(req.body, function(recipe) {
+            return res.redirect(`./admin/recipes/${recipe.id}`);
+        });
     },
     show(req, res) {
-        return res.render("./admin/show");
+        Recipe.find(req.params.id, function(recipe) {
+            if(!recipe) return res.send("Recipe not found!");
+
+            return res.render("./admin/show")
+        });
     },
     edit(req, res) {
-        return res.render(`./admin/edit`);
+        Recipe.find(req.params.id, function(recipe) {
+            if(!recipe) return res.send("Recipe not found!");
+
+            Recipe.chefSelectOptions(function(options) {
+                return res.render("./admin/edit", { recipe, chefOptions: options });
+            });
+        });
     },
     put(req, res) {
-        return res.redirect(`/admin/recipes/${id}`);
+        const keys = Object.keys(req.body);
+
+        for (key of keys) {
+            if (req.body[key] == "" && key != "information") {
+                return res.send("Please, fill all fields!");
+            }
+        }
+
+        Recipe.update(req.body, function() {
+            return res.redirect(`./admin/recipes/${req.body.id}`);
+        });
     },
     delete(req, res) {
-        return res.redirect("/admin/recipes");
+        Recipe.delete(req.body.id, function() {
+            return res.redirect("/admin/recipes"); 
+        });
     },
 
 

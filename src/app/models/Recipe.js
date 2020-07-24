@@ -5,7 +5,8 @@ module.exports = {
     all(calback) {
         const query = `
             SELECT recipes.*, chefs.name AS chef_name
-            FROM recipes LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+            FROM recipes 
+            LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
         `;
 
         db.query( query, function(err, results) {
@@ -17,7 +18,6 @@ module.exports = {
     create(data, callback) {
         const query = `
             INSERT INTO recipes (
-                name,
                 image,
                 title,
                 ingredients,
@@ -25,12 +25,11 @@ module.exports = {
                 information,
                 created_at,
                 chef_id
-            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-            RETURNIN id
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7)
+            RETURNING id
         `;
 
         const values = [
-            data.name,
             data.image,
             data.title,
             data.ingredients,
@@ -43,7 +42,7 @@ module.exports = {
         db.query(query, values, function(err, results) {
             if(err) throw `Database error! ${err}`;
 
-            calback(results.rows[0]);
+            callback(results.rows[0]);
         });
     },
     find(id, callback) {
@@ -83,7 +82,7 @@ module.exports = {
             callback(results.rows);
         });
     },
-    update(data, calback) {
+    update(data, callback) {
         const query = `
             UPDATE recipes SET
                 image=($1),
@@ -101,7 +100,7 @@ module.exports = {
             data.ingredients,
             data.preparation,
             data.information,
-            data.chef_id,
+            data.chef,
             data.id
         ];
 
@@ -113,6 +112,13 @@ module.exports = {
     },
     chefSelectOptions(callback) {
         db.query(`SELECT name, id FROM chefs`, function(err, results) {
+            if (err) throw `Database Error! ${err} `;
+            
+            callback(results.rows);
+        });
+    },
+    delete(id, callback) {
+        db.query(`DELETE FROM recipes WHERE id=$1`, [id], function(err, results) {
             if (err) throw `Database Error! ${err} `;
             
             callback(results.rows);

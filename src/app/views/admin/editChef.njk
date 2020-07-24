@@ -1,0 +1,23 @@
+{% extends "layoutAdmin.njk" %}
+
+{% block content %}
+<form action="/admin/chefs?_method=DELETE" method="post" id="form-delete">
+    <div class="button-delete">
+        <button id="delete" type="submit">Deletar</button>
+    </div>
+    <input type="hidden" name="id" value={{chef.id}}>
+</form>
+<form action="/admin/chefs?_method=PUT" method="post">
+    <div class="page">
+        <div class="header-page">
+            <h3>Editando chef</h3>
+            <button type="submit">Salvar Chef</button>
+        </div>
+        {% include "admin/fieldsChef.njk" %}
+    </div>
+    <input type="hidden" name="id" value={{chef.id}}>
+</form>
+{% endblock content %}
+
+
+

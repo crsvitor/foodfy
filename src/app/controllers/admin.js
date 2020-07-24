@@ -1,4 +1,3 @@
-const Admin = require('../models/Admin-db');
 const Recipe = require('../models/Recipe');
 const Chef = require('../models/Chef');
 
@@ -26,14 +25,14 @@ module.exports = {
         }
 
         Recipe.create(req.body, function(recipe) {
-            return res.redirect(`./admin/recipes/${recipe.id}`);
+            return res.redirect(`/admin/recipes/${recipe.id}`);
         });
     },
     show(req, res) {
         Recipe.find(req.params.id, function(recipe) {
             if(!recipe) return res.send("Recipe not found!");
 
-            return res.render("./admin/show")
+            return res.render("./admin/show", { recipe });
         });
     },
     edit(req, res) {
@@ -55,7 +54,7 @@ module.exports = {
         }
 
         Recipe.update(req.body, function() {
-            return res.redirect(`./admin/recipes/${req.body.id}`);
+            return res.redirect(`/admin/recipes/${req.body.id}`);
         });
     },
     delete(req, res) {
@@ -66,25 +65,69 @@ module.exports = {
 
 
     indexChefs(req, res) {
-        return res.render("./admin/chefs");
+        Chef.all(function(chefs) {
+            return res.render("./admin/chefs", { chefs });            
+        });
     },
     createChef(req, res) {
-        return res.render("./admin/create");
-    },
-    showChef(req, res) {
-        return res.render("./admin/show");
-    },
-    editChef(req, res) {
-        return res.render(`./admin/edit`);
+        return res.render("./admin/createChef");
     },
     postChef(req, res) {
-        return res.redirect(`/admin/recipes/`);
+        const keys = Object.keys(req.body);
+
+        for (const key of keys) {
+            if (req.body[key] == "") {
+                return res.send("Please, fill all the fields!");
+            }
+        }
+
+        Chef.create(req.body, function(chef) {
+           return res.redirect(`/admin/chefs/${chef.id}`); 
+        });
+    },
+    showChef(req, res) {
+        Chef.find(req.params.id, function(chef) {
+            if (!chef) {
+                return res.send("Sorry, chef not found!");
+            }
+
+            Chef.findRecipes(req.params.id, function(recipes) {
+                return res.render("admin/showChef", { chef, recipes });
+            });
+        });
+    },
+    editChef(req, res) {
+        Chef.find(req.params.id, function(chef) {
+            if(!chef) {
+                return res.send("Sorry, chef not found!");
+            }
+
+            return res.render("./admin/editChef", { chef });
+        });
     },
     putChef(req, res) {
-        return res.redirect(`/admin/recipes/${id}`);
+        const keys = Object.keys(req.body);
+
+        for (const key of keys) {
+            if(req.body[key] == "") {
+                return res.send("Please, fill all the fields");
+            }
+        }
+
+        Chef.update(req.body, function() {
+            return res.redirect(`/admin/chefs/${req.body.id}`);
+        });
     },
     deleteChef(req, res) {
-        return res.redirect("/admin/recipes");
+        Chef.find(req.body.id, function(chef) {
+           if (chef.total_recipes == 0) {
+               Chef.delete(req.body.id, function() {
+                  return res.redirect("/admin/chefs"); 
+               });
+           } else {
+               return res.send("Chefs who have recipes on our website cannot be deleted");
+           }
+        });
     }
 }
 

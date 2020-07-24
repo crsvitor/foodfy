@@ -1,0 +1,44 @@
+{% extends "layoutAdmin.njk" %}
+
+{% block content %}
+<form action="/admin/chefs/{{chef.id}}/edit" method="get">
+    <div class="header-show">
+        <h3>Chef: {{chef.name}}</h3>
+        <button type="submit">Editar Chef</button>
+    </div>
+    <div class="chef-info">
+        <div class="chef-header">
+            <img src="{{chef.avatar_url}}" alt="">
+            <h3>{{chef.name}}</h3>
+            <p>{% if chef.total_recipes == 0%}
+                Nenhuma receita cadastrada
+                {% endif %}
+                {% if chef.total_recipes == 1%}
+                    {{chef.total_recipes}}
+                    receita
+                {% endif %}
+                {% if chef.total_recipes > 1%}
+                    {{chef.total_recipes}}
+                    receitas
+                {% endif %}
+            </p>
+        </div>
+        {% if chef.total_recipes != 0 %}
+            <h3 class="title">Receitas</h3>
+
+            <section class="recipe-cards">
+                {% for recipe in recipes %}
+                    <div class="recipe-card">
+                        <img src="{{recipe.image}}" alt="">
+                        <div class="texts">
+                            <span>{{recipe.title}}</span>
+                            <span>por {{recipe.chef_name}}</span>
+                            <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </section>
+        {% endif %}
+    </div>
+</form>
+{% endblock content %}

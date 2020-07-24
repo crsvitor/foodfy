@@ -5,8 +5,16 @@
     {% for chef in chefs %}
             <div class="chef" id="{{chef.id}}">
                 <img src="{{chef.avatar_url}}" alt="">
-                <h3>{{chef.name}}</h3>
-                <p>{{chef.recipes}}</p>
+                <div class="texts-column">
+                    <h3>{{chef.name}}</h3>
+                    <p>{% if chef.total_recipes == 1 %}
+                        {{chef.total_recipes}} receita
+                    {% endif %}
+                    {% if chef.total_recipes != 1 %}
+                        {{chef.total_recipes}} receitas
+                    {% endif %}
+                    </p>
+                </div>
             </div>
     {% endfor %}
 </section>

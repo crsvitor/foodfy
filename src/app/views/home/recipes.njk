@@ -2,17 +2,20 @@
 
 {% block filter %}
     <form id="filterForm" action="/recipes" method="get">
-        <input type="text" class="filterField" name="filter" placeholder="Nome da receita" value={{filter}}>
+        <input type="text" class="filterField" name="filter" placeholder="Nome da receita" value="{{filter}}">
         <button type="submit" class="filterButton">Buscar</button>
     </form>
 {% endblock filter %}
 {% block content %}
+{% if filter %}
+        <h2 class="search">Buscando por "{{filter}}"</h2>
+{% endif %}
 <section class="recipes">
     {% for recipe in recipes %}
             <div class="card" id="{{recipe.id}}">
                 <img src="{{recipe.image}}" alt="">
                 <h3>{{recipe.title}}</h3>
-                <p>{{recipe.author}}</p>
+                <p>por {{recipe.chef_name}}</p>
             </div>
     {% endfor %}
 </section>

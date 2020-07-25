@@ -45,7 +45,7 @@ module.exports = {
     }, 
     recipePage(req, res) {
         Recipe.find(req.params.id, function(item) {
-           if(!recipe) return res.send("Recipe not found!");
+           if(!item) return res.send("Recipe not found!");
            
            return res.render("./home/recipePage", { item });
         });

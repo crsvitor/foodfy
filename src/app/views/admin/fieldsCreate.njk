@@ -2,8 +2,22 @@
         <label for="">Nome da receita</label>
         <input type="text" name="title" id="first" value="{{recipe.title}}" placeholder="Nome da receita">
 
-        <label for="">Imagem da Receita</label>
-        <input type="text" name="image" id="first" value="{{recipe.image}}" placeholder="https://">
+        <label for="">Imagens da Receita</label>
+        <div id="photos-div">
+                <div id="photos-upload">
+                        <input 
+                                id="photos-input" 
+                                type="file" 
+                                name="photos"  
+                                multiple accept="image/*" 
+                                onchange="PhotosUpload.handleFileInput(event)"
+                        >
+                        <p>+</p>
+                </div>
+                <div id="photos-preview">
+
+                </div>
+        </div>
     
         <label for="">Chef</label>
         <select name="chef" class="chef" required>

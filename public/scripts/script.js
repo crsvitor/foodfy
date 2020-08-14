@@ -14,7 +14,7 @@ for (const cardText of cardsText) {
     (cardText.querySelector("p")).addEventListener("click", function(){
 
       const insideText = cardText.querySelector("p").textContent;
-      const changeText = insideText == "MUDAR" ? "ESCONDER" : "MUDAR";
+      const changeText = insideText == "MOSTRAR" ? "ESCONDER" : "MOSTRAR";
       cardText.querySelector("p").textContent = changeText;
 
       (cardText.querySelector(".change-space")).classList.toggle("active");

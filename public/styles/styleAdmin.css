@@ -18,11 +18,26 @@ header {
 
 header img {
     margin-top: 26px;
+    margin-right: 50px;
 }
 
-#wrapper-img {
+#wrapper-header {
     max-width: 940px;
     margin: 0 auto;
+    display: flex;
+}
+
+#wrapper-header nav {
+    margin-top: 30px;
+}
+
+#wrapper-header nav a {
+    margin-right: 30px;
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 15px;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
 }
 
 /* wrapper */
@@ -77,6 +92,7 @@ header img {
 
 .item-home-page img {
     width: 210px;
+    height: 80px;
     border-radius: 8.57px;
 }
 
@@ -111,7 +127,12 @@ header img {
     margin-bottom: 10px;
 }
 
-.form-fields input {
+.form-fields .chef {
+    margin-bottom: 20px;
+}
+
+.form-fields input,
+.form-fields .chef {
     height: 49px;
     background-color: #FFFFFF;
     border: 1px solid #DDDDDD;
@@ -119,7 +140,8 @@ header img {
     border-radius: 4px;
 }
 
-.form-fields input, textarea {
+.form-fields input, textarea,
+.form-fields .chef {
     padding-left: 20px;
     margin-top: 10px;
     width: 100%;
@@ -162,7 +184,66 @@ textarea {
     margin-bottom: 30px;
 }
 
-.form-fields input#second,
+/* PHOTO FIELD */
+.form-fields #photos-div {
+    display: flex;
+}
+
+.form-fields #photos-upload {
+    margin-bottom: 30px;
+
+    position: relative;
+    overflow: hidden;
+    width: 150px;
+}
+
+.form-fields #photos-upload p {
+    border-radius: 4px;
+    border: 1px solid #DDDDDD;
+    box-shadow: 0 2px 2px -6px #333;
+    background: #FFFFFF;
+    color: rgb(139, 139, 139);
+
+    padding: 40px 0;
+    text-align: center;
+
+    text-transform: uppercase;
+    font-size: 60px;
+
+    margin-right: 10px;
+}
+
+.form-fields #photos-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+
+    cursor: pointer;
+}
+
+.form-fields #photos-preview {
+    display: flex;
+}
+
+.form-fields #photos-preview img {
+    width: 150px;
+    height: 150px;
+
+    border-radius: 4px;
+
+    margin-right: 10px;
+
+    object-fit: cover;
+}
+
+
+/* OTHER INPUTS */
 .form-fields input#third {
     margin-bottom: 15px;
 }
@@ -228,7 +309,7 @@ textarea {
 
 /* show */
 .header-show {
-    margin: 30px 0 24px;
+    margin: 50px 0 24px;
     display: flex;
     justify-content: space-between;
 }
@@ -250,6 +331,8 @@ textarea {
 }
 
 .beggining img {
+    width: 940px;
+    height: 280px;
     border-radius: 15px;
 }
 
@@ -306,4 +389,93 @@ textarea {
     color: #444444;
     line-height: 28px;
     margin-bottom: 51px;
+}
+
+
+.cards-chef {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.chef-index {
+    display: flex;
+    align-items: center;
+}
+
+.chef-index img {
+    width: 64px;
+    border-radius: 50%;
+}
+
+.chef-index .texts p {
+    font-family: 'Roboto-Regular', sans-serif;
+    font-size: 18px;
+    color: #111111;
+    margin-bottom: 10px;
+}
+
+.chef-index .texts a {
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 14px;
+    color: #6558C3;
+}
+
+
+.chef-header {
+    text-align: center;
+    justify-content: center;
+}
+
+.chef-header h3 {
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 36px;
+    color: #111111;
+    margin-bottom: 4px;
+}
+
+.chef-header p {
+    font-family: 'Roboto-Regular', sans-serif;
+    font-size: 20px;
+    color: #777777;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.chef-header img {
+    width: 200px;
+    border-radius: 50%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.chef-info .title {
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 24px;
+    color: #111111;
+    margin-bottom: 15px;
+}
+
+.chef-header .total-recipes {
+    font-family: 'Roboto-Regular', sans-serif;
+    font-size: 20px;
+    color: #777777;
+    text-align: center;
+}
+
+/* CHEF'S RECIPE */
+
+.recipe-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.recipe-card {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.recipe-card img {
+    width: 172px;
+    height: 80px;
+    border-radius: 8px;
 }

@@ -26,8 +26,7 @@ function addSteps() {
 
 document.querySelector(".add-preparation").addEventListener("click", addSteps);
 
-const formDelete = document.querySelector("#form-delete");
-formDelete.addEventListener("submit", function (event) {
+document.querySelector("#form-delete").addEventListener("submit", function (event) {
     const confirmation = confirm("Deseja excluir?");
 
     if(!confirmation) {

@@ -38,11 +38,39 @@ header h1 a{
     font-family: initial;
 }
 
+header nav {
+    display: flex;
+    align-items: center;
+}
+
 header nav a {
     text-decoration: none;
     color: black;
     margin-left: 30px;
     font-size: 16px;
+}
+
+header nav .noFilter {
+    margin-right: 95px;
+}
+
+header .filterField {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    border-radius: 4px;
+    padding: 10px 110px 10px 10px;
+}
+
+header .filterButton {
+    border: none;
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+    padding: 9px 20px;
+    background: #6558C3;
+    border-radius: 4px;
+    border-radius: 4px;
 }
 
 .home-img {
@@ -91,6 +119,7 @@ header nav a {
 
 .card img {
     width: 300px;
+    height: 140px;
     border-radius: 15px;
 }
 
@@ -231,6 +260,7 @@ header nav a {
 }
 
 .wrapper-recipe-page img {
+    height: 280px;
     border-radius: 15px;
 }
 
@@ -306,3 +336,39 @@ footer p {
     color: #999999;
     
 }
+
+/* CHEFS */
+.recipes-chef {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.chef {
+    display: flex;
+}
+
+.chef img {
+    width: 80px;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.texts-column {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.texts-column h3,
+.texts-column p {
+    margin: 0;
+}
+
+.search {
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 24px;
+    color: #111111;
+}
+
+
+

@@ -15,7 +15,14 @@
                         <p>+</p>
                 </div>
                 <div id="photos-preview">
-
+                        {% if files %}
+                                {% for image in files %}
+                                <div class="photo" id="{{image.id}}">
+                                        <img src="{{image.src}}" alt="{{image.name}}">
+                                        <i class="material-icons">close</i>
+                                </div>
+                                {% endfor %}
+                        {% endif %}
                 </div>
         </div>
     
@@ -47,4 +54,4 @@
         <textarea name="information" id="forth" value="{{recipe.information}}" placeholder="Descrição adicional"></textarea>
 
 </section>
-<script src="/scripts/addPaths.js"></script>
+<script src="/scripts/addPath.js"></script>

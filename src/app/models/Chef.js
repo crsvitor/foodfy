@@ -84,5 +84,12 @@ module.exports = {
 
             callback(results.rows[0]);
         });
+    },
+    files(id) {
+        return db.query(`
+            SELECT files.* 
+            FROM files LEFT JOIN chefs ON (files.id = chefs.file_id)
+            WHERE chefs.id = $1
+        `, [id]);
     }
 }

@@ -15,7 +15,7 @@ module.exports = {
             calback(results.rows);
         });
     },
-    create(data, callback) {
+    create(data) {
         const query = `
             INSERT INTO recipes (
                 image,
@@ -39,11 +39,7 @@ module.exports = {
             data.chef
         ];
 
-        db.query(query, values, function(err, results) {
-            if(err) throw `Database error! ${err}`;
-
-            callback(results.rows[0]);
-        });
+        return db.query(query, values);
     },
     find(id, callback) {
         db.query(`SELECT recipes.*, chefs.name AS chef_name 
@@ -111,18 +107,12 @@ module.exports = {
         });
     },
     chefSelectOptions(callback) {
-        db.query(`SELECT name, id FROM chefs`, function(err, results) {
-            if (err) throw `Database Error! ${err} `;
-            
-            callback(results.rows);
-        });
+        return db.query(`SELECT name, id FROM chefs`);
     },
-    delete(id, callback) {
-        db.query(`DELETE FROM recipes WHERE id=$1`, [id], function(err, results) {
-            if (err) throw `Database Error! ${err} `;
-            
-            callback(results.rows);
-        });
+    async delete(id) {
+        await db.query(`DELETE FROM recipes_files WHERE recipes_files.recipe_id = $1`, [id]);
+
+        return db.query(`DELETE FROM recipes WHERE id=$1`, [id])
     },
     paginate(params) {
         const { filter, limit, offset, callback } = params;
@@ -157,5 +147,13 @@ module.exports = {
 
             callback(results.rows);
         });        
+    },
+    files(id) {
+        return db.query(`
+            SELECT files.* 
+            FROM files LEFT JOIN recipes_files ON (files.id = recipes_files.file_id)
+            LEFT JOIN recipes ON (recipes.id = recipes_files.recipe_id) 
+            WHERE recipes.id = $1
+        `, [id]);
     }  
 }

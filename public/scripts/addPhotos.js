@@ -44,6 +44,15 @@ const PhotosUpload = {
 
         div.appendChild(image);
 
+        div.appendChild(PhotosUpload.getRemoveButton());
+
         return div
+    },
+    getRemoveButton() {
+        const button = document.createElement('i');
+        button.classList.add('material-icons');
+        button.innerHTML = "close";
+
+        return button
     }
 }

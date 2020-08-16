@@ -42,7 +42,7 @@ module.exports = {
         let results = await Recipe.find(req.params.id);
         const recipe = results.rows[0];
 
-        if(!recipe) return res.send("Recipe not found!");
+        if (!recipe) return res.send("Recipe not found!");
 
         results = await Recipe.files(recipe.id);
         const files = results.rows.map(file => ({
@@ -50,7 +50,7 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }));
 
-        return res.render("./admin/show", { recipe, files });
+        return res.render("admin/show", { recipe, files });
     },
     async edit(req, res) {
         let results = await Recipe.find(req.params.id);
@@ -74,21 +74,42 @@ module.exports = {
         const keys = Object.keys(req.body);
 
         for (key of keys) {
-            if (req.body[key] == "" && key != "information") {
+            if (req.body[key] == "" && key != "information" && key != "removed_files") {
                 return res.send("Please, fill all fields!");
             }
         }
 
-        Recipe.update(req.body, function() {
-            return res.redirect(`/admin/recipes/${req.body.id}`);
-        });
+        if(req.files.length != 0) {
+            const newFilesPromise = req.files.map(file => 
+                File.create({...file, recipe_id: req.body.id}));
+            
+            await Promise.all(newFilesPromise);
+        }
+
+        if(req.body.removed_files) {
+            const removedFiles = req.body.removed_files.split(",");
+            console.log(removedFiles);
+            const lastIndex = removedFiles.length - 1;
+            console.log(lastIndex);
+            removedFiles.splice(lastIndex, 1);
+            console.log(removedFiles.splice(lastIndex, 1));
+
+            const removedFilesPromise = removedFiles.map(id => File.delete(id));
+
+            await Promise.all(removedFilesPromise);
+        }
+
+        await Recipe.update(req.body);
+
+        return res.redirect(`/admin/recipes/${req.body.id}`);
     },
-    delete(req, res) {
-        Recipe.delete(req.body.id, function() {
-            return res.redirect("/admin/recipes"); 
-        });
+    async delete(req, res) {
+        await Recipe.delete(req.body.id);
+
+        return res.redirect("/admin/recipes");
     },
 
+    // Chefs
 
     indexChefs(req, res) {
         Chef.all(function(chefs) {
@@ -98,7 +119,7 @@ module.exports = {
     createChef(req, res) {
         return res.render("./admin/createChef");
     },
-    postChef(req, res) {
+    async postChef(req, res) {
         const keys = Object.keys(req.body);
 
         for (const key of keys) {
@@ -107,53 +128,97 @@ module.exports = {
             }
         }
 
-        Chef.create(req.body, function(chef) {
-           return res.redirect(`/admin/chefs/${chef.id}`); 
-        });
-    },
-    showChef(req, res) {
-        Chef.find(req.params.id, function(chef) {
-            if (!chef) {
-                return res.send("Sorry, chef not found!");
-            }
+        if (req.files.length == 0) {
+            return res.send("Please, select at least one image");
+        }
 
-            Chef.findRecipes(req.params.id, function(recipes) {
-                return res.render("admin/showChef", { chef, recipes });
-            });
-        });
-    },
-    editChef(req, res) {
-        Chef.find(req.params.id, function(chef) {
-            if(!chef) {
-                return res.send("Sorry, chef not found!");
-            }
+        const filesPromise = req.files.map(file => File.createChefFile({...file}));
+        let results = await Promise.all(filesPromise);
+        const fileId = results.rows[0].id;
 
-            return res.render("./admin/editChef", { chef });
-        });
+        results = await Chef.create(req.body, fileId);
+        const chefId = results.rows[0].id;
+
+        return res.redirect(`/admin/chefs/${chefId}`); 
     },
-    putChef(req, res) {
+    async showChef(req, res) {
+        let results = await Chef.find(req.params.id);
+        const chef = results.rows[0];
+        
+        if (!chef) {
+            return res.send("Sorry, chef not found!");
+        }
+
+        results = await Chef.findRecipes(chef.id);
+        const recipes = results.rows;
+
+        results = await Chef.files(chef.id);
+        const files = results.rows.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }));
+
+        return res.render("admin/showChef", { chef, recipes, files });
+    },
+    async editChef(req, res) {
+        let results = await Chef.find(req.params.id);
+        const chef = results.rows[0];
+
+        if(!chef) {
+            return res.send("Sorry, chef not found!");
+        }
+
+        results = await Chef.files(chef.id);
+        let files = results.rows;
+
+        files = files.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }));      
+
+        return res.render("./admin/editChef", { chef });
+    },
+    async putChef(req, res) {
         const keys = Object.keys(req.body);
 
         for (const key of keys) {
-            if(req.body[key] == "") {
+            if(req.body[key] == "" && key != "removed_files") {
                 return res.send("Please, fill all the fields");
             }
         }
 
-        Chef.update(req.body, function() {
-            return res.redirect(`/admin/chefs/${req.body.id}`);
-        });
+        let results = await Chef.files(req.body.id);
+        let fileId = results.rows[0].id;
+
+        if (req.files.length != 0) {
+            const filesPromises = req.files.map(file => File.createChefFile({ ...file }));
+            results = await filesPromises[0];
+            fileId = results.rows[0].id;
+        }
+
+        if (req.body.removed_files) {
+            const removedFiles = req.body.removed_files.split(",");
+            const lastIndex = removedFiles.length - 1;
+            removedFiles.splice(lastIndex, 1);
+
+            const removedFilesPromises = removedFiles.map(id => File.delete(id));
+
+            await Promise.all(removedFilesPromises);
+        }
+
+        await Chef.update(req.body, fileId);
+
+        return res.redirect(`/admin/chefs/${req.body.id}`);
     },
-    deleteChef(req, res) {
-        Chef.find(req.body.id, function(chef) {
-           if (chef.total_recipes == 0) {
-               Chef.delete(req.body.id, function() {
-                  return res.redirect("/admin/chefs"); 
-               });
-           } else {
-               return res.send("Chefs who have recipes on our website cannot be deleted");
-           }
-        });
+    async deleteChef(req, res) {
+        let results = await Chef.find(req.body.id);
+
+        if (results.rows[0].total_recipes == 0) {
+            await Chef.delete(req.body.id);
+            return res.redirect("/admin/chefs")         
+        } else {
+            return res.send("Chefs who have recipes on our website cannot be deleted");
+        }
     }
 }
 

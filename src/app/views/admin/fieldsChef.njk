@@ -3,6 +3,20 @@
         <input type="text" name="name" id="first" value="{{chef.name}}">
 
         <label for="">Avatar</label>
-        <input type="text" name="avatar_url" id="first" value="{{chef.avatar_url}}" placeholder="https://">
+        {% if files[0] %}
+                <input type="text" id="chef-link" placeholder="{{files[0].name}}" disabled>
+        {% endif %}
+        <div class="avatar-field">
+                <div id="avatar-upload">
+                        <input 
+                                id="photos-input" 
+                                type="file" 
+                                name="photos"  
+                                multiple = "multiple" 
+                                accept="image/*" 
+                                onchange="PhotosUpload.handleFileInput(event)">
+                        <p class="avatar">Enviar Avatar</p>
+                </div>
+        </div>
 </section>
 <script src="/scripts/addPaths.js"></script>

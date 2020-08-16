@@ -16,74 +16,56 @@ module.exports = {
             callback(results.rows);
         });
     },
-    create(data, callback) {
+    create(data, file_id) {
         const query = `
             INSERT INTO chefs (
                 name, 
-                avatar_url,
-                created_at
+                created_at,
+                file_id
             ) VALUES ($1, $2, $3)
             RETURNING id
         `;
 
         const values = [
             data.name,
-            data.avatar_url,
-            date(Date.now()).iso
+            date(Date.now()).iso,
+            file_id
         ];
 
-        db.query(query, values, function(err, results) {
-            if(err) throw `Database Error! ${err}`;
-
-            callback(results.rows[0]);
-        });
+        return db.query(query, values);
     },
-    find(id, callback) {
-        db.query(`SELECT chefs.*, count(recipes) AS total_recipes
+    find(id) {
+        return db.query(`SELECT chefs.*, count(recipes) AS total_recipes
             FROM chefs
             LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
             WHERE chefs.id=$1
-            GROUP BY chefs.id`, [id], function(err, results) {
-                if(err) throw `Database Error! ${err}`;
-
-                callback(results.rows[0]);
-            });
+            GROUP BY chefs.id`, [id]);
     },
-    findRecipes(id, callback) {
-        db.query(`SELECT recipes.*
+    findRecipes(id) {
+        return db.query(`SELECT recipes.*
             FROM recipes
-            WHERE recipes.chef_id=$1`, [id], function(err, results) {
-                if(err) throw `Database Error! ${err}`;
-
-                callback(results.rows);
-            });
+            WHERE recipes.chef_id=$1`, [id]);
     },
-    update(data, callback) {
+    update(data, file_id) {
         const query = `
             UPDATE chefs SET 
                 name=($1),
-                avatar_url=($2)
+                file_id=($2)
             WHERE id=($3)
         `;
 
         const values = [
             data.name,
-            data.avatar_url,
+            file_id,
             data.id
         ];
 
-        db.query(query, values, function(err, results) {
-            if(err) throw `Database Error! ${err}`;
-
-            callback(results.rows[0]);
-        });
+        return db.query(query, values);
     },
-    delete(id, callback) {
-        db.query(`DELETE FROM chefs WHERE id=$1`, [id], function(err, results) {
-            if(err) throw `Database Error! ${err}`;
-
-            callback(results.rows[0]);
-        });
+    async delete(id) {
+        await db.query(`DELETE FROM recipe_files WHERE recipe_files.recipe_id = $1`, [id]);
+        
+        return db.query(`DELETE FROM chefs WHERE id=$1`, [id]);
     },
     files(id) {
         return db.query(`

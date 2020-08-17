@@ -551,3 +551,7 @@ textarea {
     color: #FFFFFF;
     text-align: center;
 }
+
+.form-fields input#chef-link {
+    margin-bottom: 20px;
+}

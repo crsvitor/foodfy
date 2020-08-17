@@ -15,9 +15,9 @@ server.set("view engine", "njk");
 nunjucks.configure("src/app/views", {
     express: server,
     autoescape: false,
-    noCache: true,
+    noCache: true
 });
 
-server.listen(500, function () {
+server.listen(5000, function () {
     console.log("Server is running")
 });

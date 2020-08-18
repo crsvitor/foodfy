@@ -10,26 +10,23 @@ module.exports = {
             GROUP BY chefs.id
         `;
 
-        db.query(query, function(err, results) {
-            if(err) throw `Database Error! ${err}`;
-
-            callback(results.rows);
-        });
+        return db.query(query);
+        
     },
     create(data, file_id) {
         const query = `
             INSERT INTO chefs (
                 name, 
-                created_at,
-                file_id
+                file_id,
+                created_at
             ) VALUES ($1, $2, $3)
             RETURNING id
         `;
 
         const values = [
             data.name,
+            file_id,
             date(Date.now()).iso,
-            file_id
         ];
 
         return db.query(query, values);

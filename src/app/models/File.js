@@ -1,4 +1,5 @@
 const db = require('../../config/db');
+const { show } = require('../controllers/admin');
 
 module.exports = {
     async create({filename, path, recipe_id}) {
@@ -6,7 +7,7 @@ module.exports = {
             INSERT INTO files (
                 name,
                 path
-            ) VALUE ($1, $2)
+            ) VALUES ($1, $2)
             RETURNING id
         `;
 
@@ -22,7 +23,7 @@ module.exports = {
             INSERT INTO recipe_files (
                 recipe_id,
                 file_id
-            ) VALUE ($1, $2)
+            ) VALUES ($1, $2)
             RETURNING id
         `;
 
@@ -38,7 +39,7 @@ module.exports = {
             INSERT INTO files (
                 name,
                 path
-            ) VALUE ($1, $2)
+            ) VALUES ($1, $2)
             RETURNING id
         `;
 
@@ -48,6 +49,10 @@ module.exports = {
         ];
 
         return db.query(query, values);
+    },
+    async show(id) {
+        return db.query(`
+        SELECT * FROM files WHERE id = $1`, [id]);
     },
     async delete(id) {
         try {
@@ -64,5 +69,23 @@ module.exports = {
         await db.query(`DELTE FROM recipe_files WHERE recipe_files.file_id = $1`, [id]);
 
         return db.query(`DELETE FROM files WHERE id = $1`, [id]);
+    },
+    async deleteFromRecipeFiles(id) {
+        try{
+            const result = await db.query(`SELECT * FROM recipe_files WHERE file_id = $1`, [id])
+            const file = result.rows[0]
+
+            fs.unlinkSync(file.path)
+
+        }catch(err){
+            console.error(err)
+        }
+
+        return db.query(`
+        DELETE FROM recipe_files WHERE file_id = $1`, [id])
+    },
+    deleteFromFiles(id){
+        return db.query(`
+        DELETE FROM files WHERE id = $1`, [id])
     }
 }

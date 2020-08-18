@@ -3,9 +3,7 @@
         <input type="text" name="name" id="first" value="{{chef.name}}">
 
         <label for="">Avatar</label>
-        {% if files[0] %}
-                <input type="text" id="chef-link" placeholder="{{files[0].name}}" disabled>
-        {% endif %}
+        <input type="text" id="chef-link" placeholder="{{file}}" disabled>
         <div class="avatar-field">
                 <div id="avatar-upload">
                         <input 

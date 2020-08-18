@@ -2,7 +2,7 @@ const cards = document.querySelectorAll('.card');
 
 for (const card of cards) {
     card.addEventListener("click", function() {
-      const id= card.getAttribute("id");
+      const id = card.getAttribute("id");
       window.location.href = `/recipes/${id}`;
     });
 }
@@ -19,8 +19,19 @@ for (const cardText of cardsText) {
 
       (cardText.querySelector(".change-space")).classList.toggle("active");
   });
+}
 
+const ImageGallery = {
+  highlight: document.querySelector('.highlight > img'),
+  previews: document.querySelectorAll('.gallery-preview img'),
+  setImage(event) {
+    const { target } = event;
 
+    ImageGallery.previews.forEach(preview => preview.classList.remove('active'));
+    target.classList.add('active');
+
+    ImageGallery.highlight.src = target.src;
+  }
 }
 
 

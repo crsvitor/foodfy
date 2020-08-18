@@ -6,10 +6,36 @@ module.exports = {
     redirect(req, res) {
         return res.redirect("/admin/recipes");
     },
-    index(req, res) {
-        Recipe.all(function(recipes) {
-            return res.render("./admin/index", { recipes });
-        });
+    async index(req, res) {
+        try {
+            let results = await Recipe.all();
+            const recipes = results.rows;
+
+            if(!recipes) {
+                return res.send("Recipes not found");
+            }
+
+            async function getImage(recipeId) {
+                let results = await Recipe.files(recipeId);
+                const files = results.rows.map(file => 
+                    `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+                );                
+            
+                return files[0];
+            }
+
+            const recipesPromise = recipes.map(async recipe => {
+                recipe.img = await getImage(recipe.id)
+                return recipe
+            });
+
+            const allSet = await Promise.all(recipesPromise);
+
+
+            return res.render("./admin/index", { recipes: allSet });
+        } catch {
+
+        }
     },
     async create(req, res) {
         let results = await Recipe.chefSelectOptions();
@@ -88,13 +114,10 @@ module.exports = {
 
         if(req.body.removed_files) {
             const removedFiles = req.body.removed_files.split(",");
-            console.log(removedFiles);
             const lastIndex = removedFiles.length - 1;
-            console.log(lastIndex);
             removedFiles.splice(lastIndex, 1);
-            console.log(removedFiles.splice(lastIndex, 1));
 
-            const removedFilesPromise = removedFiles.map(id => File.delete(id));
+            const removedFilesPromise = removedFiles.map(id => File.deleteFromRecipeFiles(id));
 
             await Promise.all(removedFilesPromise);
         }
@@ -111,10 +134,41 @@ module.exports = {
 
     // Chefs
 
-    indexChefs(req, res) {
-        Chef.all(function(chefs) {
-            return res.render("./admin/chefs", { chefs });            
-        });
+    async indexChefs(req, res) {
+        // let all = await Chef.all();
+        // const chefs = all.rows;
+
+        try {
+            let results = await Chef.all();
+            const chefs = results.rows;
+
+            if(!chefs) {
+                return res.send("Chefs not found");
+            }
+
+            async function getImage(chefId) {
+                let results = await Chef.files(chefId);
+                const files = results.rows.map(file => 
+                    `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+                );
+
+                return files[0];
+            }
+
+            const chefsPromise = chefs.map(async chef => {
+                chef.img = await getImage(chef.id)
+                return chef
+            });
+
+            const allChefs = await Promise.all(chefsPromise);
+
+            return res.render("./admin/chefs", { chefs: allChefs });
+        
+        } catch {
+            console.error(err);
+        }
+
+        return res.render("./admin/chefs", { chefs });            
     },
     createChef(req, res) {
         return res.render("./admin/createChef");
@@ -132,8 +186,8 @@ module.exports = {
             return res.send("Please, select at least one image");
         }
 
-        const filesPromise = req.files.map(file => File.createChefFile({...file}));
-        let results = await Promise.all(filesPromise);
+        const filePromise = req.files.map(file => File.createChefFile({...file}));
+        let results = await filePromise[0];
         const fileId = results.rows[0].id;
 
         results = await Chef.create(req.body, fileId);
@@ -144,13 +198,8 @@ module.exports = {
     async showChef(req, res) {
         let results = await Chef.find(req.params.id);
         const chef = results.rows[0];
-        
-        if (!chef) {
-            return res.send("Sorry, chef not found!");
-        }
 
-        results = await Chef.findRecipes(chef.id);
-        const recipes = results.rows;
+        if (!chef) return res.send("Chef not found!");
 
         results = await Chef.files(chef.id);
         const files = results.rows.map(file => ({
@@ -158,7 +207,26 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }));
 
-        return res.render("admin/showChef", { chef, recipes, files });
+
+        let recipes = await Recipe.findByChef(chef.id);
+        
+        async function getImage(recipeId) {
+            let results = await Recipe.files(recipeId);
+            const files = results.rows.map(file =>
+                `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+            );
+            
+            return files[0];
+        }
+
+        const recipesPromises = recipes.rows.map(async recipe => {
+            recipe.img = await getImage(recipe.id)
+            return recipe
+        });
+
+        const allFiles = await Promise.all(recipesPromises);  
+
+        return res.render("admin/showChef", { chef, recipes: allFiles, files });
     },
     async editChef(req, res) {
         let results = await Chef.find(req.params.id);
@@ -176,7 +244,7 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }));      
 
-        return res.render("./admin/editChef", { chef });
+        return res.render("./admin/editChef", { chef, file: files[0].src });
     },
     async putChef(req, res) {
         const keys = Object.keys(req.body);

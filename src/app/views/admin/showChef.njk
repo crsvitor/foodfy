@@ -8,7 +8,7 @@
     </div>
     <div class="chef-info">
         <div class="chef-header">
-            <img src="{{chef.avatar_url}}" alt="">
+            <img src="{{files[0].src}}" alt="">
             <h3>{{chef.name}}</h3>
             <p>{% if chef.total_recipes == 0%}
                 Nenhuma receita cadastrada
@@ -29,7 +29,7 @@
             <section class="recipe-cards">
                 {% for recipe in recipes %}
                     <div class="recipe-card">
-                        <img src="{{recipe.image}}" alt="">
+                        <img src="{{recipe.img}}" alt="">
                         <div class="texts">
                             <span>{{recipe.title}}</span>
                             <span>por {{recipe.chef_name}}</span>

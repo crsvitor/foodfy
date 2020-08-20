@@ -105,21 +105,26 @@ module.exports = {
             }
         }
 
-        if(req.files.length != 0) {
-            const newFilesPromise = req.files.map(file => 
-                File.create({...file, recipe_id: req.body.id}));
-            
-            await Promise.all(newFilesPromise);
-        }
-
         if(req.body.removed_files) {
             const removedFiles = req.body.removed_files.split(",");
             const lastIndex = removedFiles.length - 1;
             removedFiles.splice(lastIndex, 1);
 
-            const removedFilesPromise = removedFiles.map(id => File.deleteFromRecipeFiles(id));
+            const removedFilesPromise = removedFiles.map(id => File.delete(id));
 
             await Promise.all(removedFilesPromise);
+        }
+
+        if(req.files.length != 0) {
+            const oldFiles = await Recipe.files(req.body.id);
+            const totalFiles = oldFiles.rows.length + req.files.length;
+
+            if (totalFiles <= 5) {
+                const newFilesPromise = req.files.map(file => 
+                    File.create({...file, recipe_id: req.body.id}));
+                
+                await Promise.all(newFilesPromise);
+            }
         }
 
         await Recipe.update(req.body);

@@ -1,5 +1,5 @@
 const db = require('../../config/db');
-const { show } = require('../controllers/admin');
+const fs = require('fs');
 
 module.exports = {
     async create({filename, path, recipe_id}) {
@@ -66,7 +66,7 @@ module.exports = {
             console.error(err);
         }
 
-        await db.query(`DELTE FROM recipe_files WHERE recipe_files.file_id = $1`, [id]);
+        await db.query(`DELETE FROM recipe_files WHERE recipe_files.file_id = $1`, [id]);
 
         return db.query(`DELETE FROM files WHERE id = $1`, [id]);
     },

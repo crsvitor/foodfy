@@ -2,10 +2,44 @@
 
 {% block content %}
         <div class="wrapper-recipe-page">
-            <img src="{{item.image}}" alt="{{item.title}}">
+            <div class="images-wrapper">
+                <div class="highlight">
+                    {% if not files[0] %}
+                        <img src="http://placehold.it/500x500?text=PRODUTO SEM FOTO" />
+                    {% else %}
+                        <img 
+                            src="{{files[0}.src}}" 
+                            alt="{{files[0}.name}}"
+                            onclick="Lightbox.open()"
+                        >
+                    {% endif %}
+                    <div class="lightbox-target">
+                            <img src="{{files[0].src}}" alt="{{files[0].name}}">
+                            <a 
+                                href="#" 
+                                class="lightbox-close"
+                                onclick="Lightbox.close()"
+                            >
+                                <i class="material-icons">close</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="gallery-preview">
+                        {% for image in files %}
+                            <img 
+                                src="{{image.src}}" 
+                                alt="{{iamge.name}}"
+                                {% if loop.index0 == 0 %}
+                                    class="active"
+                                {% endif %}
+                                onclick="ImageGallery.setImage(event)"
+                            >
+                        {% endfor %}
+                    </div>
+                </div>
             <div class="titles-recipe-page">
-                <h1>{{item.title}}</h1>
-                <p>por {{item.chef_name}}</p>
+                <h1>{{recipe.title}}</h1>
+                <p>por {{recipe.chef_name}}</p>
             </div>
             
             <div class="cardText">
@@ -15,7 +49,7 @@
             </div>
             <div class="change-space">
                 <ul>
-                {% for ingredient in item.ingredients %}
+                {% for ingredient in recipe.ingredients %}
                     <li>
                         {{ingredient}}
                     </li>
@@ -31,7 +65,7 @@
             </div>
             <div class="change-space">
                 <ul>
-                {% for prepare in item.preparation %}
+                {% for prepare in recipe.preparation %}
                     <li>
                         {{prepare}}
                     </li>
@@ -46,7 +80,7 @@
                 <p>ESCONDER</p>
             </div>
             <div class="change-space" id="information">
-                {{item.information}}
+                {{recipe.information}}
             </div>
             </div>
         </div>

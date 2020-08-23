@@ -17,6 +17,21 @@ body {
     box-sizing: border-box;
 }
 
+footer {
+    width: 100%;
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    background: #EEEEEE;
+}
+
+footer p {
+    padding: 4px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #999999;
+}
+
 .wrapper {
     margin: 0 auto;
     width: 940px;
@@ -121,6 +136,8 @@ header .filterButton {
     width: 300px;
     height: 140px;
     border-radius: 15px;
+
+    object-fit: cover;
 }
 
 .card h3 {
@@ -180,7 +197,7 @@ header .filterButton {
 }
 
 
-
+/* MODAL */
 .modal-overlay {
     background-color: rgba(0, 0, 0, 0.7);
     width: 100%;
@@ -296,6 +313,103 @@ header .filterButton {
     margin-bottom: 50px;
 }
 
+/* GALLERY-PREVIEW */
+.wrapper-recipe-page .highlight > img {
+    width: 940px;
+    height: 280px;
+
+    object-fit: cover;
+    object-position: 50% 50%;
+    border: 1px solid #efefef;
+
+    cursor: zoom-in;
+}
+
+.wrapper-recipe-page .images-wrapper .gallery-preview {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 4px;
+}
+
+
+.wrapper-recipe-page .gallery-preview img {
+    height: 68px;
+    width: 68px;
+
+    margin-left: 6px;
+
+    object-fit: cover;
+
+    opacity: 0.6;
+
+    cursor: pointer;
+
+    transition: 200ms;
+}
+
+.wrapper-recipe-page .gallery-preview img:hover,
+.wrapper-recipe-page .gallery-preview img.active {
+    opacity: 1;
+}
+
+/* LIGHTBOX */
+.highlight .lightbox-target {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0, 0.7);
+
+    overflow: hidden;
+    z-index: 100;
+
+    top: -100%;
+    left: 0;
+    opacity: 0;
+
+    transition: opacity 400ms;
+}
+
+.highlight .lightbox-target img {
+    margin: auto;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    background-color: white;
+    box-shadow: 0px 0px 8px rgba(0,0,0, 0.3);
+
+    width: 50%;
+    height: 50%;
+
+    object-fit: cover;
+}
+
+.highlight a.lightbox-close {
+    width: 50px;
+    height: 50px;
+
+    background: white;
+    
+    color: black;
+
+    text-decoration: none;
+
+    position: absolute;
+	top: -80px;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 400ms;
+}
+
+/* RECIPE PAGE INFO */
 .infos {
     display: flex;
     align-items: center;
@@ -321,26 +435,11 @@ header .filterButton {
     height: 0;
 }
 
-footer {
-    width: 100%;
-    margin-top: auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    background: #EEEEEE;
-    margin-top: 20px;
-}
-
-footer p {
-    text-align: center;
-    font-size: 14px;
-    color: #999999;
-    
-}
-
 /* CHEFS */
 .recipes-chef {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 4px;
 }
 
 .chef {
@@ -351,6 +450,8 @@ footer p {
     width: 80px;
     border-radius: 50%;
     margin: 5px;
+
+    object-fit: cover;
 }
 
 .texts-column {

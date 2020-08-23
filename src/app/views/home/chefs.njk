@@ -4,7 +4,7 @@
 <section class="recipes-chef">
     {% for chef in chefs %}
             <div class="chef" id="{{chef.id}}">
-                <img src="{{chef.avatar_url}}" alt="">
+                <img src="{{chef.img}}" alt="">
                 <div class="texts-column">
                     <h3>{{chef.name}}</h3>
                     <p>{% if chef.total_recipes == 1 %}

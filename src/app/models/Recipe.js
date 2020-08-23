@@ -41,7 +41,7 @@ module.exports = {
         LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
         WHERE recipes.id = $1`, [id]);
     },
-    findBy(filter, callback) {
+    findBy(filter) {
         let filterQuery = "",
             totalQuery = `
                 SELECT recipes.*, chefs.name AS chef_name
@@ -62,11 +62,7 @@ module.exports = {
             `;
         }
 
-        db.query( totalQuery, function(err, results) {
-            if (err) throw `Database Error! ${err} `;
-            
-            callback(results.rows);
-        });
+        return db.query( totalQuery );
     },
     findByChef(id){
         return db.query(`SELECT recipes.*, chefs.name AS chef_name 
@@ -105,7 +101,7 @@ module.exports = {
         return db.query(`DELETE FROM recipes WHERE id=$1`, [id])
     },
     paginate(params) {
-        const { filter, limit, offset, callback } = params;
+        const { filter, limit, offset } = params;
 
         let query = "",
             filterQuery = "",
@@ -132,11 +128,7 @@ module.exports = {
                 LIMIT $1 OFFSET $2
             `;
 
-        db.query(query, [limit, offset], function(err, results) {
-            if (err) throw `Database Error! ${err} `;
-
-            callback(results.rows);
-        });        
+        return db.query(query, [limit, offset]);
     }, 
     files(id) {
         return db.query(`

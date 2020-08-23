@@ -1,11 +1,5 @@
 {% extends "layout.njk" %}
 
-{% block filter %}
-    <form id="filterForm" action="/recipes" method="get">
-        <input type="text" class="filterField" name="filter" placeholder="Nome da receita" value={{filter}}>
-        <button type="submit" class="filterButton">Buscar</button>
-    </form>
-{% endblock filter %}
 {% block content %}
     <section class="home-img">
         <div class="texts">
@@ -23,7 +17,7 @@
         {% for i in range(0, 6) %}
             {% if recipes[i] %}
                 <div class="card" id="{{recipes[i].id}}">
-                    <img src="{{recipes[i].image}}" alt="">
+                    <img src="{{recipes[i].img}}" alt="">
                     <h3>{{recipes[i].title}}</h3>
                     <p>por {{recipes[i].chef_name}}</p>
                 </div>

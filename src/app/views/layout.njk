@@ -18,9 +18,11 @@
                 <a href="/recipes">Receitas</a>
                 <a href="/chefs">Chefs</a>
             </div>
-            {% block filter %}
-
-            {% endblock filter %}
+            
+            <form id="filterForm" action="/recipes" method="get">
+                <input type="text" class="filterField" name="filter" placeholder="Nome da receita" value="{{filter}}">
+                <button type="submit" class="filterButton">Buscar</button>
+            </form>
         </nav>
     </header>
     {% block content %}

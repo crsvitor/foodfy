@@ -41,12 +41,6 @@ module.exports = {
         LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
         WHERE recipes.id = $1`, [id]);
     },
-    findByChef(id){
-        return db.query(`SELECT recipes.*, chefs.name AS chef_name 
-        FROM recipes 
-        LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-        WHERE chefs.id = $1`, [id]);
-    },
     findBy(filter, callback) {
         let filterQuery = "",
             totalQuery = `
@@ -73,6 +67,12 @@ module.exports = {
             
             callback(results.rows);
         });
+    },
+    findByChef(id){
+        return db.query(`SELECT recipes.*, chefs.name AS chef_name 
+        FROM recipes 
+        LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+        WHERE chefs.id = $1`, [id]);
     },
     update(data) {
         const query = `

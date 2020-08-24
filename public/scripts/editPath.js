@@ -13,7 +13,7 @@ function addIngredient(){
 document.querySelector(".add-ingredient").addEventListener("click", addIngredient);
 
 function addSteps() {
-    const method = document.querySelector("#prepariation-method");
+    const method = document.querySelector("#preparation-method");
     const step = document.querySelectorAll(".methods");
 
     const newStep = step[step.length - 1].cloneNode(true);

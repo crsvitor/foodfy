@@ -7,7 +7,7 @@ module.exports = {
             SELECT recipes.*, chefs.name AS chef_name
             FROM recipes 
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-        `;
+            ORDER BY recipes.created_at DESC`;
 
         return db.query(query);
     },
@@ -19,8 +19,9 @@ module.exports = {
                 preparation,
                 information,
                 created_at,
+                updated_at,
                 chef_id
-            ) VALUES ($1, $2, $3, $4, $5, $6)
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7)
             RETURNING id
         `;
 
@@ -29,7 +30,8 @@ module.exports = {
             data.ingredients,
             data.preparation,
             data.information,
-            date(Date.now()).iso,
+            date(Date.now()).now,
+            date(Date.now()).now,
             data.chef
         ];
 
@@ -125,6 +127,7 @@ module.exports = {
                 FROM recipes
                 LEFT JOIN chefs ON ( recipes.chef_id = chefs.id )
                 ${filterQuery}
+                ORDER BY recipes.updated_at DESC
                 LIMIT $1 OFFSET $2
             `;
 

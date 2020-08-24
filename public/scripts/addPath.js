@@ -13,7 +13,7 @@ function addIngredient(){
 document.querySelector(".add-ingredient").addEventListener("click", addIngredient);
 
 function addSteps() {
-    const method = document.querySelector("#prepariation-method");
+    const method = document.querySelector("#preparation-method");
     const step = document.querySelectorAll(".methods");
 
     const newStep = step[step.length - 1].cloneNode(true);
@@ -25,3 +25,14 @@ function addSteps() {
 }
 
 document.querySelector(".add-preparation").addEventListener("click", addSteps);
+
+itms = document.querySelectorAll('.ingredient')
+ingredients = document.querySelector('.ingredients .content')
+del = document.querySelectorAll('.delete')
+
+for (let i = 0; i < del.length; i++) {
+    del[i].addEventListener('click', function () {
+        ingredients.removeChild(itms[i])
+        ingredients.removeChild(del[i])
+    })
+}

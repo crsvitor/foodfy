@@ -27,6 +27,10 @@ CREATE TABLE "recipe_files" (
   "file_id" integer NOT NULL
 );
 
+CREATE TABLE "users" (
+  
+);
+
 ALTER TABLE "recipe_files" ADD FOREIGN KEY ("recipe_id") REFERENCES "recipes" ("id");
 
 ALTER TABLE "recipe_files" ADD FOREIGN KEY ("file_id") REFERENCES "files" ("id");

@@ -1,5 +1,5 @@
-const Recipe = require('../models/Recipe');
-const Chef = require('../models/Chef');
+const Recipe = require('../../models/Recipe');
+const Chef = require('../../models/Chef');
 
 module.exports = {
     async index(req, res) {
@@ -28,10 +28,13 @@ module.exports = {
 
         const allSet = await Promise.all(recipesPromise);
 
-        return res.render("./home/index", { recipes: allSet, filter });
+        return res.render("./client-website/index", { recipes: allSet, filter });
+    },
+    redirect(req, res) {
+        return res.redirect("/admin/recipes");
     },
     about(req, res) {
-        return res.render("./home/about");
+        return res.render("./client-website/about");
     },
     async recipes(req, res) {
         let { filter, page, limit } = req.query;
@@ -80,7 +83,7 @@ module.exports = {
                 
         
 
-        return res.render("./home/recipes", { recipes: allSet, pagination, filter });
+        return res.render("./client-website/recipes", { recipes: allSet, pagination, filter });
     }, 
     async recipePage(req, res) {
         let result = await Recipe.find(req.params.id);
@@ -97,7 +100,7 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }));
         
-        return res.render("./home/recipePage", { recipe, files });
+        return res.render("./client-website/recipePage", { recipe, files });
     },
     async chefs(req, res) {
         let results = await Chef.all();
@@ -119,30 +122,6 @@ module.exports = {
 
         const allSet = await Promise.all(chefsPromise);
 
-        return res.render("./home/chefs", { chefs: allSet }); 
+        return res.render("./client-website/chefs", { chefs: allSet }); 
     }
 }
-
-// exports.index = function (req, res) {
-//     return res.render("./home/index", { recipes: data.recipes });
-// }
-
-// exports.about = function (req, res) {
-//     return res.render("./home/about");
-// }
-
-// exports.recipes = function (req, res) {
-//     return res.render("./home/recipes", { recipes: data.recipes });
-// }
-
-// exports.recipePage = function (req, res) {
-//     const {id} = req.params;
-//     const foundRecipe = data.recipes.find(function (recipe) {
-//         return recipe.id == id;
-//     });
-//     if(!foundRecipe){
-//         return res.send("Sorry! Not found");
-//     }
-
-//     return res.render("./home/recipePage", { item: foundRecipe });
-// }

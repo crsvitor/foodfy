@@ -9,6 +9,7 @@ CREATE TABLE "recipes" (
   "id" SERIAL PRIMARY KEY,
   "title" text NOT NULL,
   "chef_id" integer NOT NULL,
+  "user_id" integer NOT NULL,
   "ingredients" text[] NOT NULL,
   "preparation" text[] NOT NULL,
   "information" text,
@@ -28,7 +29,15 @@ CREATE TABLE "recipe_files" (
 );
 
 CREATE TABLE "users" (
-  
+  "id" SERIAL PRIMARY KEY,
+  "name" text NOT NULL,
+  "email" text UNIQUE NOT NULL,
+  "password" text NOT NULL,
+  "reset_token" text,
+  "reset_token_expires" text,
+  "is_admin" BOOLEAN DEFAULT false,
+  "created_at" TIMESTAMP DEFAULT(now()),
+  "updated_at" TIMESTAMP DEFAULT(now())
 );
 
 ALTER TABLE "recipe_files" ADD FOREIGN KEY ("recipe_id") REFERENCES "recipes" ("id");
@@ -36,3 +45,5 @@ ALTER TABLE "recipe_files" ADD FOREIGN KEY ("recipe_id") REFERENCES "recipes" ("
 ALTER TABLE "recipe_files" ADD FOREIGN KEY ("file_id") REFERENCES "files" ("id");
 
 ALTER TABLE "chefs" ADD FOREIGN KEY ("file_id") REFERENCES "files" ("id");
+
+ALTER TABLE "recipes" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");

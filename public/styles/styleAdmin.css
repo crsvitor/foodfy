@@ -707,3 +707,76 @@ textarea {
     margin-bottom: 20px;
 }
 
+/* USER REGISTRATION */
+/* register.njk - title */
+form .page .header-page > h3 {
+    font-family: 'Roboto', sans-serifs;
+    font-weight: 700;
+    font-size: 24px;
+    color: #111111;
+}
+
+/* register.njk - buttons */
+
+form .page .header-page .button-save {
+    position: relative;
+
+}
+
+form .page .header-page .button-save button#save {
+    position: absolute;
+    
+    left: 194px;
+
+    cursor: pointer;
+}
+
+form .page .header-page .button-cancel {
+    position: relative;
+}
+
+form .page .header-page .button-cancel a {
+    position: absolute;
+    right: 0px;
+
+    padding: 9px 20px;
+    
+    text-decoration: none;
+    border-radius: 4px;
+
+    background: #c0c0c0;
+    color: white;
+}
+
+/* register.njk - fields.njk */
+/* user form-fields */
+section.user.form-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 94px 1fr;
+    grid-gap: 40px;
+    grid-row-gap: 24px;
+}
+
+section.user.form-fields .single-fields {
+    margin-bottom: 0;
+}
+
+section.user.form-fields .check-field {
+    display: flex;
+    max-width: 450px;
+}
+
+section.user.form-fields .check-field > input {
+    height: 15px;
+    width: 15px;
+
+    margin-top: 0;
+    margin-right: 8px;
+}
+
+/* User - Edit */
+.delete-user .button-delete {
+    position: relative;
+    right: 103px;
+}

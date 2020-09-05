@@ -1,0 +1,21 @@
+{% extends "layoutAdmin.njk" %}
+
+{% block content %}
+<form action="/admin/users" method="post">
+    <div class="page">
+        <div class="header-page">
+            <h3>Criar Usuário</h3>
+
+            <div class="button-save">
+                <button id="save" type="submit">Salvar</button>        
+            </div>
+
+            <div class="button-cancel">
+                <a href="/admin/users" id="cancel" type="submit">Cancelar</a>
+            </div>
+        </div>
+        {% include "admin/user/fields.njk" %}
+    </div>
+    <input type="hidden" name="id" value={{chef.id}}>
+</form>
+{% endblock content %}

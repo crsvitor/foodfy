@@ -13,7 +13,8 @@ CREATE TABLE "recipes" (
   "ingredients" text[] NOT NULL,
   "preparation" text[] NOT NULL,
   "information" text,
-  "created_at" timestamp NOT NULL
+  "created_at" timestamp NOT NULL,
+  "updated_at" TIMESTAMP DEFAULT(now())
 );
 
 CREATE TABLE "files" (
@@ -36,7 +37,7 @@ CREATE TABLE "users" (
   "reset_token" text,
   "reset_token_expires" text,
   "is_admin" BOOLEAN DEFAULT false,
-  "created_at" TIMESTAMP DEFAULT(now()),
+  "created_at" timestamp NOT NULL,
   "updated_at" TIMESTAMP DEFAULT(now())
 );
 
@@ -47,3 +48,26 @@ ALTER TABLE "recipe_files" ADD FOREIGN KEY ("file_id") REFERENCES "files" ("id")
 ALTER TABLE "chefs" ADD FOREIGN KEY ("file_id") REFERENCES "files" ("id");
 
 ALTER TABLE "recipes" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
+
+
+-- create procedure
+CREATE FUNCTION trigger_set_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- auto updated_at recipes
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON recipes
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
+-- auto updated_at users
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON users
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();

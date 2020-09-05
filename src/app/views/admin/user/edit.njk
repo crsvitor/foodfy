@@ -1,0 +1,22 @@
+{% extends "layoutAdmin.njk" %}
+
+{% block content %}
+<div class="delete-user">
+<form action="/admin/users?_method=DELETE" method="post" id="form-delete">
+    <div class="button-delete">
+        <button id="delete" type="submit">Deletar</button>
+    </div>
+    <input type="hidden" name="id" value={{user.id}}>
+</form>
+</div>
+<form action="/admin/users?_method=PUT" method="post">
+    <div class="page">
+        <div class="header-page">
+            <h3>Atualizar Usuário</h3>
+            <button type="submit">Salvar</button>
+        </div>
+        {% include "admin/user/fields.njk" %}
+    </div>
+    <input type="hidden" name="id" value={{user.id}}>
+</form>
+{% endblock content %}

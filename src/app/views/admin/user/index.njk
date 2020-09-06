@@ -1,0 +1,24 @@
+{% extends "layoutAdmin.njk" %}
+
+{% block content %}
+<div id="first-page">
+    <div class="header">
+        <h3>Usuários</h3>
+        <a href="">Novo</a>
+    </div>    
+    <div class="cards-users">
+    {% for user in users %}
+        <div class="user-index">
+            <div class="user-info">
+                <p>{{user.name}}</p>
+                <p>{{user.email}}</p>
+                <div class="links">
+                    <a href="/admin/user/{{user.id}}/edit">Editar</a>
+                    <a href="/admin/user/{{user.id}}/delete-not-working">Excluir</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock content %}

@@ -9,18 +9,20 @@
     <title>Foodfy</title>
 </head>
 <body>
-    <header>
-        <div id="wrapper-header">
-            <a href="/admin">
-                <img id="margin-img" src="/assets/FoodFy.png" alt="">     
-            </a>
-            <nav>
-                <a href="/admin/recipes">Receitas</a>
-                <a href="/admin/chefs">Chefs</a>
-                <a href="/admin/users">Usuários</a>
-            </nav>
-        </div>
-    </header>
+    {% block header %}
+        <header>
+            <div id="wrapper-header">
+                <a href="/admin">
+                    <img id="margin-img" src="/assets/FoodFy.png" alt="">     
+                </a>
+                <nav>
+                    <a href="/admin/recipes">Receitas</a>
+                    <a href="/admin/chefs">Chefs</a>
+                    <a href="/admin/users">Usuários</a>
+                </nav>
+            </div>
+        </header>
+    {% endblock header %}
     <div class="wrapper">
         <main>
             {% block content %}

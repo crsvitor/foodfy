@@ -31,13 +31,13 @@ module.exports = {
 
             const allChefs = await Promise.all(chefsPromise);
 
-            return res.render("./admin/chef/chefs", { chefs: allChefs });
+            return res.render("./admin/chef/index", { chefs: allChefs });
         
         } catch {
             console.error(err);
         }
 
-        return res.render("./admin/chef/chefs", { chefs });            
+        return res.render("./admin/chef/index", { chefs });            
     },
     create(req, res) {
         return res.render("./admin/chef/create");

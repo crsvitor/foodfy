@@ -780,3 +780,88 @@ section.user.form-fields .check-field > input {
     position: relative;
     right: 103px;
 }
+
+/* User - index */
+#first-page .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#first-page .header a {
+    text-decoration: none;
+    color: white;
+    padding: 9px 36px;
+
+    background-color: #7159C1;
+    border-radius: 4px;
+
+}
+
+#first-page .cards-users {
+    margin-top: 42px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 194px;
+    grid-row-gap: 50px;
+}
+
+#first-page .cards-users .user-index {
+    display: flex;
+    flex-direction: column;
+}
+
+#first-page .cards-users .user-index > .user-info p:nth-child(1) {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #111111;
+    margin-bottom: 4px;
+}
+
+#first-page .cards-users .user-index > .user-info p:nth-child(2) {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #777777;
+    margin-bottom: 12px;
+}
+
+#first-page .cards-users .user-index > .user-info .links a {
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Roboto-bold', sans-serif;
+    font-weight: bolder;
+}
+
+#first-page .cards-users .user-index > .user-info .links a:first-child {
+    color: #6558C3;
+    margin-right: 12px;
+}
+
+#first-page .cards-users .user-index > .user-info .links a:last-child {
+    color: #F55A5A;
+}
+
+/* Session - Login */
+section.login.container.form > form {
+    max-width: 500px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section.login.container.form > form .login.foodfy.logo p {
+    
+}
+
+section.login.container.form > form .login.foodfy.logo a {
+    text-decoration: none;
+    font-family: 'Cochin';
+    font-size: 28px;
+    color: #111111;
+    letter-spacing: 1.65px;
+    align-items: center;
+    justify-content: center;
+}

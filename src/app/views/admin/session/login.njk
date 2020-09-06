@@ -1,0 +1,28 @@
+{% extends "layoutAdmin.njk" %}
+
+{% block header %}
+{% endblock header %}
+{% block content %}
+    <section class="login container form">
+        <form action="/admin/login" method="post">
+            <div class="login foodfy logo">
+                <a href=""><p>FoodFy</p></a>
+            </div>
+            <div class="title">
+                <h3>Iniciar Sessão</h3>
+            </div>
+            <div class="login-field">
+                <label for="">Email</label>
+                <input type="text" name="email" value="{{user.email}}" placeholder="Digite seu Email">
+            </div>
+            <div class="login-field">
+                <label for="">Senha</label>
+                <input type="text" name="password" placeholder="Digite sua senha">
+            </div>
+            <div class="links">
+                <a href="">Perdeu a senha?</a>
+                <button type="submit">Acessar</button>
+            </div>
+        </form>
+    </section>
+{% endblock content %}

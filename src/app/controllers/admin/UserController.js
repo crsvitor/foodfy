@@ -4,7 +4,6 @@ const File = require('../../models/File');
 
 module.exports = {
     list(req, res) {
-
         return res.render('./admin/user/index');
     }
 }

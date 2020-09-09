@@ -1,14 +1,18 @@
 const express = require('express');
 const routes = express.Router();
 
-const multer = require('../../app/middlewares/multer');
+const multer = require('../app/middlewares/multer');
 
-const SessionController = require('../../app/controllers/admin/SessionController');
+const SessionController = require('../app/controllers/admin/SessionController');
 
 routes.get('/login', SessionController.loginToForm);
 routes.post('/login', SessionController.login);
 
+routes.get('/forgot-password', SessionController.forgotPasswordToForm);
+routes.post('/forgot-password', SessionController.forgotPassword);
 
+routes.get('/reset-password', SessionController.resetPasswordToForm);
+routes.post('/reset-password', SessionController.resetPassword);
 
 
 

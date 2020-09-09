@@ -853,7 +853,7 @@ section.login.container.form > form {
 }
 
 section.login.container.form > form .login.foodfy.logo p {
-    
+    display: block;
 }
 
 section.login.container.form > form .login.foodfy.logo a {

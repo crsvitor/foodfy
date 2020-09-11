@@ -12,7 +12,8 @@
         </div>
 
         <div class="check-field">
-                <input type="checkbox" name="isAdmin" id="checkbox" value="{{user.isAdmin}}">
+                <input type="checkbox" name="is_admin" id="checkbox" value="true" {% if user.is_admin == true %}
+                checked {% endif %}}>
                 <label for="isAdmin">Administrador</label>
         </div>
 </section>

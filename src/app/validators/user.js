@@ -11,7 +11,7 @@ module.exports = {
         
 
         for(key of keys) {
-            if (req.body[key] == "" && key != "isAdmin" && key != "id") {
+            if (req.body[key] == "" && key != "is_admin" && key != "id") {
                 return res.render('./admin/user/register', {
                     user: req.body,
                     error: keys

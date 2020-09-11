@@ -1,0 +1,41 @@
+/* Messages - related to login */
+@keyframes hidemessage {
+    to {
+        top: -50px;
+        opacity: 0;
+    }
+}
+
+.messages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    position: absolute;
+    width: 345px;
+    height: 135px;
+    color: white;
+    top: 15px;
+    right: 105px;
+
+    animation: hidemessage 400ms 5s ease-out forwards;
+}
+
+.messages.success {
+    background: #01B12A;
+    border-radius: 4px;   
+}
+
+.messages.error {
+    background: #DC4747;
+    border-radius: 4px;
+}
+
+/* email-check.js errors */
+div.error {
+    color: white;
+    background-color: #e74c3c;
+    padding: 4px;
+    margin-top: 2px;
+    border-radius: 4px;
+}

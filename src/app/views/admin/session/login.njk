@@ -13,7 +13,8 @@
             </div>
             <div class="login-field">
                 <label for="">Email</label>
-                <input type="text" name="email" value="{{user.email}}" placeholder="Digite seu Email">
+                <input type="text" name="email" value="{{user.email}}" placeholder="Digite seu Email"
+                    onblur="Validate.apply(this, 'isItEmail')">
             </div>
             <div class="login-field">
                 <label for="">Senha</label>
@@ -26,3 +27,6 @@
         </form>
     </section>
 {% endblock content %}
+{% block scripts %}
+    <script src="/scripts/email-check.js"></script> 
+{% endblock scripts %}

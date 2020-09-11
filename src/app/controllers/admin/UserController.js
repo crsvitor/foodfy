@@ -1,9 +1,19 @@
-const Chef = require('../../models/Chef');
-const Recipe = require('../../models/Recipe');
-const File = require('../../models/File');
+const User = require('../../models/User');
 
 module.exports = {
     list(req, res) {
         return res.render('./admin/user/index');
+    },
+    create(req, res) {
+        return res.render('./admin/user/register');
+    },
+    async post(req, res) {
+        return res.send("passed");
+    },
+    put(req, res) {
+
+    },
+    delete(req, res) {
+
     }
 }

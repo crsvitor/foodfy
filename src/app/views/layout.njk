@@ -5,31 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/client-website.css">
     <title>Foodfy</title>
 </head>
 <body>
     <div class="wrapper">
-    <header>
-        <h1><a href="/">Foodfy</a></h1>
-        <nav>
-            <div class="noFilter">
-                <a href="/about">Sobre</a>
-                <a href="/recipes">Receitas</a>
-                <a href="/chefs">Chefs</a>
-            </div>
-            
-            <form id="filterForm" action="/recipes" method="get">
-                <input type="text" class="filterField" name="filter" placeholder="Nome da receita" value="{{filter}}">
-                <button type="submit" class="filterButton">Buscar</button>
-            </form>
-        </nav>
-    </header>
-    {% block content %}
+        
+        <header>
+            <h1><a href="/">Foodfy</a></h1>
+            <nav>
+                <div class="noFilter">
+                    <a href="/about">Sobre</a>
+                    <a href="/recipes">Receitas</a>
+                    <a href="/chefs">Chefs</a>
+                </div>
+                
+                <form id="filterForm" action="/recipes" method="get">
+                    <input type="text" class="filterField" name="filter" placeholder="Nome da receita" value="{{filter}}">
+                    <button type="submit" class="filterButton">Buscar</button>
+                </form>
+            </nav>
+        </header>
 
-    {% endblock content %}
-    <script src="/scripts/script.js"></script>
+        {% block content %}
+
+        {% endblock content %}
+
+        <script src="/scripts/page-switch.js"></script>
+        <script src="/scripts/image-switch.js"></script>
+        <script src="/scripts/hide-show-texts.js"></script>
+        
     </div>
+
     <footer>
            <p>Todos direitos reservados, receitas Foodfy.</p>
     </footer>

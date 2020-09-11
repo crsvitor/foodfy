@@ -1,0 +1,417 @@
+/* create */
+.header-page {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0 30px;
+}
+
+.header-page button {
+    padding: 9px 20px;
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: right;
+    background: #6558C3;
+    border-radius: 4px;
+    border-radius: 4px;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-fields label {
+    font-family: 'Roboto-Bold', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: #111111;
+    margin-bottom: 10px;
+}
+
+.form-fields .chef {
+    margin-bottom: 20px;
+}
+
+.form-fields input,
+.form-fields .chef {
+    height: 49px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    border-radius: 4px;
+}
+
+.form-fields input, textarea,
+.form-fields .chef {
+    padding-left: 20px;
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    height: 49px;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: bold;
+    color: black;
+}
+
+textarea {
+    padding-top: 18px;
+    padding-right: 40px;
+    height: 257px;
+    margin-bottom: 51px;
+}
+
+.form-fields #ingredients .ingredient {
+    position: relative;
+}
+
+.form-fields #ingredients .ingredient input {
+    width: 100%;
+    height: 49px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    border-radius: 4px;
+
+    display: relative;
+    top: 0;
+    right: 0;
+}
+
+
+
+.form-fields #ingredients .ingredient i {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    margin-top: 20px;
+    margin-right: 4px;
+
+    font-size: 30px;
+
+    color: #e03535;
+
+    cursor: pointer;
+}
+
+.form-fields #peparation-method .methods input {
+    width: 100%;
+    height: 49px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    border-radius: 4px;
+}
+
+.form-fields #preparation-method .methods {
+    position: relative;
+}
+
+.form-fields #preparation-method .methods input {
+    width: 100%;
+    height: 49px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    border-radius: 4px;
+
+    display: relative;
+    top: 0;
+    right: 0;
+}
+
+
+
+.form-fields #preparation-method .methods i {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    margin-top: 20px;
+    margin-right: 4px;
+
+    font-size: 30px;
+
+    color: #e03535;
+
+    cursor: pointer;
+}
+
+
+
+.form-fields input#first {
+    margin-bottom: 30px;
+}
+
+/* PHOTO FIELD */
+.form-fields #photos-div {
+    display: flex;
+}
+
+.form-fields #photos-upload {
+    margin-bottom: 30px;
+
+    position: relative;
+    overflow: hidden;
+    width: 150px;
+}
+
+.form-fields #photos-upload p {
+    border-radius: 4px;
+    border: 1px solid #DDDDDD;
+    box-shadow: 0 2px 2px -6px #333;
+    background: #FFFFFF;
+    color: rgb(139, 139, 139);
+
+    padding: 40px 0;
+    text-align: center;
+
+    text-transform: uppercase;
+    font-size: 60px;
+
+    margin-right: 10px;
+}
+
+.form-fields #photos-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+
+    cursor: pointer;
+}
+
+.form-fields #photos-preview {
+    display: flex;
+}
+
+.form-fields #photos-preview img {
+    width: 150px;
+    height: 150px;
+
+    border-radius: 4px;
+
+    margin-right: 10px;
+
+    object-fit: cover;
+}
+
+/* ICON CLOSE */
+#photos-preview .photo {
+    position: relative;
+}
+
+#photos-preview .photo  i {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: rgba(226, 226, 226, 0.801);
+    color: red;
+
+    width: 150px;
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 500%;
+    cursor: pointer;
+
+    transition: opacity 200ms;
+
+    opacity: 0;
+}
+
+#photos-preview .photo i:hover {
+    opacity: 1;
+}
+
+/* OTHER INPUTS */
+.form-fields input#third {
+    margin-bottom: 15px;
+}
+
+.form-fields input:last-child {
+    margin-bottom: 51px;
+}
+
+.form-fields .add-ingredient {
+    width: 22.5%;
+    display: inline-block;
+    font-family: 'Roboto-Bold', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: #6558C3;
+    background-color: white;
+    text-align: left;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.form-fields .add-preparation {
+    width: 22.5%;
+    display: inline-block;
+    font-family: 'Roboto-Bold', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: #6558C3;
+    background-color: white;
+    text-align: left;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+#last {
+    max-width: 18%;
+}
+
+.form-fields .add-path:hover {
+    border-bottom: 1px solid #6558C3;
+}
+
+.button-delete {
+    position: relative;
+    right: 145px;
+}
+
+#delete {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    padding: 9px 20px;
+    background: #DC4747;
+    border-radius: 4px;
+    border-radius: 4px;
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: right;
+}
+
+/* show */
+.header-show {
+    margin: 50px 0 24px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-show h3 {
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 24px;
+    color: #111111;
+}
+
+.header-show button {
+    padding: 9px 20px;
+    background: #6558C3;
+    border-radius: 4px;
+    border-radius: 4px;
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+/* RECIPE'S PREVIEW */
+.beggining .highlight > img {
+    width: 940px;
+    height: 280px;
+    
+    border-radius: 15px;
+
+    object-fit: cover;
+    
+    cursor: zoom-in;
+}
+
+.beggining .gallery-preview {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 4px;
+}
+
+.beggining .gallery-preview img {
+    height: 68px;
+    width: 68px;
+    border-radius: 4px;
+
+    margin-left: 6px;
+
+    object-fit: cover;
+
+    opacity: 0.6;
+    
+    cursor: pointer;
+
+    transition: 200ms;
+}
+
+.beggining .gallery-preview img:hover,
+.beggining .gallery-preview img.active {
+    opacity: 1;
+}
+
+.beggining h1 {
+    margin: 50px 0 4px;
+    text-align: center;
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 36px;
+    color: #111111;
+}
+
+.beggining h3 {
+    text-align: center;
+    font-weight: 400;
+    font-family: 'Roboto-Regular', sans-serif;
+    font-size: 20px;
+    color: #777777;
+    margin-bottom: 31px;
+}
+
+.steps h3 {
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 24px;
+    color: #111111;
+    margin-bottom: 19px;
+}
+
+.steps ul li {
+    margin-left: 17px;
+    font-family: 'Roboto-Regular', sans-serif;
+    font-size: 18px;
+    color: #444444;
+    line-height: 28px;
+}
+
+.steps ul {
+    margin-bottom: 41px;
+}
+
+.info h3 {
+    font-family: 'Roboto-Bold', sans-serif;
+    font-size: 24px;
+    color: #111111;
+    margin-bottom: 19px; 
+}
+
+.info p {
+    font-family: 'Roboto-Regular', sans-serif;
+    font-size: 18px;
+    color: #444444;
+    line-height: 28px;
+    margin-bottom: 51px;
+}

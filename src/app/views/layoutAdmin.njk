@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-    <link rel="stylesheet" href="/styles/styleAdmin.css">
+    {% include "parts/styles.njk" %}
     <title>Foodfy</title>
 </head>
 <body>
+    {% include "parts/messages.njk" %}
+
     {% block header %}
         <header>
             <div id="wrapper-header">
@@ -19,10 +21,12 @@
                     <a href="/admin/recipes">Receitas</a>
                     <a href="/admin/chefs">Chefs</a>
                     <a href="/admin/users">Usuários</a>
+                    <a href="/admin/users/logout">Sair</a>
                 </nav>
             </div>
         </header>
     {% endblock header %}
+    
     <div class="wrapper">
         <main>
             {% block content %}
@@ -30,7 +34,6 @@
         </main>
         {% block scripts %}
         {% endblock scripts %}
-        <script src="/scripts/addPhotos.js"></script>
     </div>
 </body>
 </html>

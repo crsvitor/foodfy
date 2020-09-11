@@ -1,0 +1,109 @@
+/* Session - Login */
+section.login.container.form > form {
+    max-width: 500px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section.login.container.form > form .login.foodfy.logo p {
+    margin: 35px 0 145px;
+}
+
+section.login.container.form > form .login.foodfy.logo a {
+    text-decoration: none;
+    font-family: 'Cochin';
+    font-size: 28px;
+    color: #111111;
+    letter-spacing: 1.65px;
+    align-items: center;
+    justify-content: center;
+}
+
+section.login.container.form > form .title h3 {
+    font-family: 'Roboto-bold', sans-serif;
+    font-size: 24px;
+    color: #111111;
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+section.login.container.form > form .login-field {
+    display: flex;
+    flex-direction: column;
+}
+
+section.login.container.form > form .login-field > label {
+    font-family: 'Roboto-bold', sans-serif;
+    font-weight: bolder;
+    font-size: 16px;
+    color: #111111;
+
+    margin-bottom: 10px;
+}
+
+section.login.container.form > form .login-field input {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+
+    font-family: 'Helvetica';
+    font-size: 16px;
+    color: #999999;
+    padding: 14px 306px 14px 15px;
+
+    margin-bottom: 35px;
+}
+
+section.login.container.form > form .links {
+    min-width: 500px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+section.login.container.form > form .links a {
+    font-family: 'Roboto-bold', sans-serif;
+    font-weight: bolder;
+    font-size: 16px;
+    text-decoration: none;
+    color: #969696;
+}
+
+section.login.container.form > form .links button {
+    font-family: 'Roboto-bold', sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+
+    padding: 9px 35px;
+
+    background: #6558C3;
+    border-radius: 4px;
+}
+
+/* Recover Password */
+section.login.container.form > form .link {
+    min-width: 500px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+section.login.container.form > form .link button {
+    font-family: 'Roboto-bold', sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+
+    padding: 9px 35px;
+
+    background: #6558C3;
+    border-radius: 4px;
+}

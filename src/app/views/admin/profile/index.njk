@@ -1,0 +1,17 @@
+{% extends "layoutAdmin.njk" %}
+
+{% block content %}
+<form action="/admin/profile?_method=PUT" method="post">
+    <div class="page">
+        <div class="header-page">
+            <h3>Bem vindo {{user}}</h3>
+            <button type="submit">Salvar</button>
+        </div>
+        {% include "admin/profile/fields.njk" %}
+    </div>
+    <input type="hidden" name="id" value={{user.id}}>
+</form>
+{% endblock content %}
+{% block scripts %}
+    <script src="/scripts/email-check.js"></script> 
+{% endblock scripts %}

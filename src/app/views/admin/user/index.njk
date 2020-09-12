@@ -14,7 +14,11 @@
                 <p>{{user.email}}</p>
                 <div class="links">
                     <a href="/admin/users/{{user.id}}/edit">Editar</a>
-                    <a href="/admin/users/{{user.id}}/delete-not-working">Excluir</a>
+                    
+                    <form action="/admin/users?_method=DELETE" method="post" id="delete-user">
+                        <button type="submit">Excluir</button>
+                        <input type="hidden" name="id" value={{user.id}}>
+                    </form>
                 </div>
             </div>
         </div>
@@ -22,3 +26,6 @@
     </div>
 </div>
 {% endblock content %}
+{% block scripts %}
+    <script src="/scripts/delete-sure.js"></script>
+{% endblock scripts %}

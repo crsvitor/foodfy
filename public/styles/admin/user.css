@@ -117,7 +117,13 @@ section.user.form-fields .check-field > input {
     margin-bottom: 12px;
 }
 
-#first-page .cards-users .user-index > .user-info .links a {
+#first-page .cards-users .user-index > .user-info .links {
+    display: flex;
+    align-items: center;
+}
+
+#first-page .cards-users .user-index > .user-info .links a,
+#first-page .cards-users .user-index > .user-info .links button {
     text-decoration: none;
     font-size: 14px;
     font-family: 'Roboto-bold', sans-serif;
@@ -129,6 +135,7 @@ section.user.form-fields .check-field > input {
     margin-right: 12px;
 }
 
-#first-page .cards-users .user-index > .user-info .links a:last-child {
+#first-page .cards-users .user-index > .user-info .links button:first-child {
     color: #F55A5A;
+    background-color: white;
 }

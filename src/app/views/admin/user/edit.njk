@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="delete-user">
-<form action="/admin/users?_method=DELETE" method="post" id="form-delete">
+<form action="/admin/users?_method=DELETE" method="post" id="delete-user">
     <div class="button-delete">
         <button id="delete" type="submit">Deletar</button>
     </div>
@@ -22,4 +22,5 @@
 {% endblock content %}
 {% block scripts %}
     <script src="/scripts/email-check.js"></script> 
+    <script src="/scripts/delete-sure.js"></script> 
 {% endblock scripts %}

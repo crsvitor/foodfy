@@ -4,9 +4,9 @@ const { hash } = require('bcryptjs');
 const fs = require('fs');
 
 const Product = require('./Recipe');
-const { put } = require('../validators/user');
-const { index } = require('../controllers/admin/ProfileController');
-const { array } = require('../middlewares/multer');
+// const { put } = require('../validators/user');
+// const { index } = require('../controllers/admin/ProfileController');
+// const { array } = require('../middlewares/multer');
 
 module.exports = {
     async list() {

@@ -30,9 +30,6 @@ module.exports = {
 
         return res.render("./client-website/index", { recipes: allSet, filter });
     },
-    redirect(req, res) {
-        return res.redirect("/admin/recipes");
-    },
     about(req, res) {
         return res.render("./client-website/about");
     },

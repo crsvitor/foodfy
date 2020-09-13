@@ -30,8 +30,8 @@ module.exports = {
 
 
             return res.render("./admin/recipe/index", { recipes: allSet });
-        } catch {
-
+        } catch(err) {
+            console.error(err);
         }
     },
     async create(req, res) {
@@ -52,6 +52,9 @@ module.exports = {
         if (req.files.length == 0) {
             return res.send('Please, send at least one image');
         }
+
+        const { userId: id } = req.session;
+        req.body.userId = id;
 
         let results = await Recipe.create(req.body);
         const recipe_id = results.rows[0].id;

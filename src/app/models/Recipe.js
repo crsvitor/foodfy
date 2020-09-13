@@ -20,8 +20,9 @@ module.exports = {
                 information,
                 created_at,
                 updated_at,
-                chef_id
-            ) VALUES ($1, $2, $3, $4, $5, $6, $7)
+                chef_id,
+                user_id
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
             RETURNING id
         `;
 
@@ -32,7 +33,8 @@ module.exports = {
             data.information,
             date(Date.now()).now,
             date(Date.now()).now,
-            data.chef
+            data.chef,
+            data.userId
         ];
 
         return db.query(query, values);
@@ -71,6 +73,11 @@ module.exports = {
         FROM recipes 
         LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
         WHERE chefs.id = $1`, [id]);
+    },
+    findByUser(id) {
+        return db.query(`
+            SELECT * FROM RECIPES WHERE user_id = $1
+        `, [id]);
     },
     update(data) {
         const query = `

@@ -1,3 +1,4 @@
+const User = require('../../models/User');
 const Chef = require('../../models/Chef');
 const Recipe = require('../../models/Recipe');
 const File = require('../../models/File');
@@ -79,6 +80,9 @@ module.exports = {
         return res.render("admin/recipe/show", { recipe, files });
     },
     async edit(req, res) {
+        const { userId: id } = req.session;
+        const user = await User.findOne({ Where: {id}});
+
         let results = await Recipe.find(req.params.id);
         const recipe = results.rows[0];
 
@@ -94,6 +98,12 @@ module.exports = {
             src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
         }));
         
+        if (user.is_admin != true || recipe.user_id != id) {
+            return res.render("./admin/recipe/show", { recipe, files, 
+                error: "É necessário ser administrador ou criador de tal receita para editá-la!"
+            });
+        }
+
         return res.render("./admin/recipe/edit", { recipe, chefOptions: chefs, files });
     },
     async put(req, res) {

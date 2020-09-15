@@ -4,9 +4,6 @@ const { hash } = require('bcryptjs');
 const fs = require('fs');
 
 const Product = require('./Recipe');
-// const { put } = require('../validators/user');
-// const { index } = require('../controllers/admin/ProfileController');
-// const { array } = require('../middlewares/multer');
 
 module.exports = {
     async list() {
@@ -49,13 +46,13 @@ module.exports = {
                 ) VALUES ($1, $2, $3, $4, $5)
                 RETURNING id
             `;
-
-            const password = "a";
+            
+            const passwordHash = await hash(data.password, 8);
 
             const values = [
                 data.name,
                 data.email,
-                password,
+                passwordHash,
                 data.is_admin,
                 date(Date.now()).now
             ];

@@ -9,7 +9,7 @@ module.exports = {
                 if (req.body[key] == "" && key != "is_admin" && key != "id") {
                     return res.render('./admin/user/register', {
                         user: req.body,
-                        error: "Preencha todos os campos"
+                        error: "Preencha todos os campos!"
                     });
                 }
             }
@@ -23,7 +23,7 @@ module.exports = {
             if(user) {
                 return res.render('./admin/user/register', {
                     user: req.body,
-                    error: 'Usuário já cadastrado'
+                    error: 'Usuário já cadastrado!'
                 });
             }
     
@@ -41,7 +41,7 @@ module.exports = {
                 if (req.body[key] == "" && key != "is_admin" && key != "id") {
                     return res.render('./admin/user/edit', {
                         user: req.body,
-                        error: "Preencha todos os campos" 
+                        error: "Preencha todos os campos!" 
                     });
                 }
             }
@@ -70,7 +70,7 @@ module.exports = {
             if ( id == aboutToBeDeleteUser ) {
                 return res.render('./admin/user/index', {
                     users,
-                    error: 'você não pode deletar sua própia conta'
+                    error: 'Você não pode deletar sua própia conta!'
                 });
             }
             

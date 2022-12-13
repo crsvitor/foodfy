@@ -14,7 +14,7 @@
     "bcryptjs": "^2.4.3",
     "connect-pg-simple": "^6.2.1",
     "crypto": "^1.0.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-session": "^1.17.1",
     "fix": "0.0.6",
     "intl": "^1.2.5",
